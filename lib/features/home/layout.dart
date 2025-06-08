@@ -5,6 +5,7 @@ import 'package:todo_app/features/settings/settings_view.dart';
 import 'package:todo_app/features/tasks_list/add_task_bottom_sheet.dart';
 import 'package:todo_app/provider/auth_providers.dart';
 
+import '../../generated/l10n.dart';
 import '../../provider/list_provider.dart';
 import '../tasks_list/tasks_list_view.dart';
 
@@ -32,8 +33,8 @@ class _HomeScreenState extends State<Layout> {
     return Scaffold(
       appBar: AppBar(
         title: Text(selectedIndex == 0
-            ? 'To Do List ${authProvider.currentUser!.name}'
-            : 'Settings'),
+            ? '${S.of(context).todolist} ${authProvider.currentUser!.name}'
+            : S.of(context).setting),
         toolbarHeight: MediaQuery.of(context).size.height * 0.2,
         titleSpacing: MediaQuery.of(context).size.width * 0.04,
         actions: [

@@ -3,6 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/my_theme.dart';
 import 'package:todo_app/provider/theme_provider.dart';
 
+import '../../generated/l10n.dart';
+import '../../provider/locale_provider.dart';
+
 class SettingsView extends StatefulWidget {
   static const String routeName = "SettingsScreen";
 
@@ -20,6 +23,8 @@ class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     themeProvider = Provider.of<ThemeProvider>(context);
+    var lang = Provider.of<LocaleProvider>(context);
+
     selectedMode =
         themeProvider.currentTheme == ThemeMode.light ? 'Light' : 'Dark';
     return Padding(
@@ -30,7 +35,7 @@ class _SettingsViewState extends State<SettingsView> {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'Language',
+                S.of(context).language,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -52,6 +57,13 @@ class _SettingsViewState extends State<SettingsView> {
                     : MyTheme.blackColorDark,
               )),
               width: double.infinity,
+              onSelected: (newLang) {
+                if (newLang == 'Arabic') {
+                  lang.changeLanguage('ar');
+                } else if (newLang == 'English') {
+                  lang.changeLanguage('en');
+                }
+              },
               inputDecorationTheme: light(),
               dropdownMenuEntries: ['Arabic', 'English']
                   .map((lang) => DropdownMenuEntry(
@@ -69,7 +81,7 @@ class _SettingsViewState extends State<SettingsView> {
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'Mode',
+                S.of(context).mode,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
