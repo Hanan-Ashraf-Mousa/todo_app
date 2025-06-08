@@ -1,16 +1,17 @@
-# todo_app
+# Todo App
 
-A new Flutter project.
+A Flutter-based Todo application that allows users to manage tasks with features like theme switching (light/dark mode), localization (English/Arabic), and Firebase integration for data persistence.
 
-## Getting Started
+## Overview
+This Todo app is designed to help users organize their tasks efficiently. It provides a clean UI with support for multiple themes and languages, and uses Firebase Firestore for real-time task storage and synchronization. The app is built using Flutter, with state management handled by the Provider package.
 
-This project is a starting point for a Flutter application.
+## Features
+- Add, edit, and delete tasks.
+- Mark tasks as completed.
+- Switch between light and dark themes.
+- Support for English and Arabic localization.
+- Real-time data synchronization with Firebase Firestore.
+- Responsive design for various screen sizes.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
