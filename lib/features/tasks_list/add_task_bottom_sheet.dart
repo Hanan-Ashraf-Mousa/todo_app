@@ -5,6 +5,9 @@ import 'package:todo_app/firebase_utils.dart';
 import 'package:todo_app/model/task.dart';
 import 'package:todo_app/provider/auth_providers.dart';
 import 'package:todo_app/provider/list_provider.dart';
+import 'package:todo_app/provider/theme_provider.dart';
+
+import '../../my_theme.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({super.key});
@@ -22,10 +25,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
     return SingleChildScrollView(
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
           decoration: BoxDecoration(
+            color: themeProvider.currentTheme == ThemeMode.light
+                ? MyTheme.whiteColor
+                : MyTheme.blackColorDark,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15), topRight: Radius.circular(15)),
           ),
@@ -35,7 +42,10 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text('Add new Task',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        color: themeProvider.currentTheme == ThemeMode.light
+                            ? MyTheme.blackColor
+                            : MyTheme.whiteColor),
                     textAlign: TextAlign.center),
                 SizedBox(
                   height: 20,
@@ -50,6 +60,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   },
                   decoration: InputDecoration(
                     hintText: 'enter your  task title',
+                    hintStyle: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: themeProvider.currentTheme == ThemeMode.light
+                                ? MyTheme.greyColor
+                                : MyTheme.whiteColor),
                   ),
                 ),
                 SizedBox(
@@ -65,6 +83,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   },
                   decoration: InputDecoration(
                     hintText: 'enter your task description',
+                    hintStyle: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(
+                            fontWeight: FontWeight.w400,
+                            color: themeProvider.currentTheme == ThemeMode.light
+                                ? MyTheme.greyColor
+                                : MyTheme.whiteColor),
                   ),
                   maxLines: 3,
                 ),
@@ -73,7 +99,10 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 ),
                 Text(
                   'Select Date',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: themeProvider.currentTheme == ThemeMode.light
+                          ? MyTheme.blackColor
+                          : MyTheme.whiteColor),
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(
@@ -85,10 +114,11 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   },
                   child: Text(
                     formatDate.format(date),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w400),
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w400,
+                        color: themeProvider.currentTheme == ThemeMode.light
+                            ? MyTheme.blackColor
+                            : MyTheme.whiteColor),
                     textAlign: TextAlign.center,
                   ),
                 ),

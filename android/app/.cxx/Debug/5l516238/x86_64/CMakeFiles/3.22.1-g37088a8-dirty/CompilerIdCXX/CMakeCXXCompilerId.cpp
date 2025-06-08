@@ -17,7 +17,7 @@
 
 #if defined(__COMO__)
 # define COMPILER_ID "Comeau"
-/* __COMO_VERSION__ = VRR */
+  /* __COMO_VERSION__ = VRR */
 # define COMPILER_VERSION_MAJOR DEC(__COMO_VERSION__ / 100)
 # define COMPILER_VERSION_MINOR DEC(__COMO_VERSION__ % 100)
 

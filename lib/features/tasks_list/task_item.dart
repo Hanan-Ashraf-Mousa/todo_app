@@ -6,6 +6,7 @@ import 'package:todo_app/firebase_utils.dart';
 import 'package:todo_app/model/task.dart';
 import 'package:todo_app/my_theme.dart';
 import 'package:todo_app/provider/list_provider.dart';
+import 'package:todo_app/provider/theme_provider.dart';
 
 import '../../provider/auth_providers.dart';
 
@@ -18,6 +19,7 @@ class TaskItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var providerList = Provider.of<ListProvider>(context);
     var authProvider = Provider.of<AuthProviders>(context);
+    var themeProvider = Provider.of<ThemeProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
@@ -54,7 +56,9 @@ class TaskItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: MyTheme.whiteColor,
+              color: themeProvider.currentTheme == ThemeMode.light
+                  ? MyTheme.whiteColor
+                  : MyTheme.blackColorDark,
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,7 +90,14 @@ class TaskItem extends StatelessWidget {
                                         : MyTheme.primaryColor,
                                   )),
                       Text(task.description ?? '',
-                          style: Theme.of(context).textTheme.titleMedium),
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(
+                                  color: themeProvider.currentTheme ==
+                                          ThemeMode.light
+                                      ? MyTheme.blackColor
+                                      : MyTheme.whiteColor)),
                     ],
                   ),
                 ),
@@ -103,6 +114,7 @@ class TaskItem extends StatelessWidget {
                           task.isDone = true;
                           FirebaseUtils.updateTask(
                               Task(
+                                  id: task.id,
                                   title: task.title,
                                   description: task.description,
                                   dateTime: task.dateTime,
