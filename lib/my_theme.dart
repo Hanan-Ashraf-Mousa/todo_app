@@ -15,14 +15,15 @@ class MyTheme {
       primaryColor: primaryColor,
       scaffoldBackgroundColor: bgLight,
       appBarTheme: AppBarTheme(
-        backgroundColor: primaryColor,
-        elevation: 0,
-        titleTextStyle: TextStyle(
-          color: whiteColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 22.0,
-        ),
+        iconTheme: IconThemeData(color: whiteColor),
+      backgroundColor: primaryColor,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: whiteColor,
+        fontWeight: FontWeight.bold,
+        fontSize: 22.0,
       ),
+    ),
       textTheme: TextTheme(
           titleLarge: TextStyle(
             fontSize: 22,
@@ -44,17 +45,19 @@ class MyTheme {
           showUnselectedLabels: false,
           selectedItemColor: primaryColor,
           unselectedItemColor: Color(0xffC8C9CB),
-          unselectedIconTheme: IconThemeData(
-            color: Color(0xffC8C9CB),
-            size: 20,
-          ),
-          selectedIconTheme: IconThemeData(color: primaryColor, size: 22)),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: primaryColor,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-              side: BorderSide(width: 5, color: whiteColor))));
+        unselectedIconTheme: IconThemeData(
+          color: Color(0xffC8C9CB),
+          size: 20,
+        ),
+        selectedIconTheme: IconThemeData(color: primaryColor, size: 22)),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: primaryColor,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: BorderSide(width: 5, color: whiteColor))),
+  );
+
   static ThemeData darkMode = ThemeData(
       scaffoldBackgroundColor: bgDark,
       appBarTheme: AppBarTheme(
