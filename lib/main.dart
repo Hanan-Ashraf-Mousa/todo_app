@@ -7,6 +7,7 @@ import 'package:todo_app/features/home/layout.dart';
 import 'package:todo_app/my_theme.dart';
 import 'package:todo_app/provider/auth_providers.dart';
 import 'package:todo_app/provider/list_provider.dart';
+import 'package:todo_app/provider/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,8 @@ void main() async {
       ChangeNotifierProvider(
         create: (BuildContext context) => ListProvider(),
       ),
-      ChangeNotifierProvider(create: (context) => AuthProviders())
+      ChangeNotifierProvider(create: (context) => AuthProviders()),
+      ChangeNotifierProvider(create: (context) => ThemeProvider()),
     ],
     child: const MyApp(),
   ));
@@ -30,10 +32,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: MyTheme.lightMode,
       darkTheme: MyTheme.darkMode,
+      themeMode: theme.currentTheme,
       initialRoute: LoginScreen.routeName,
       routes: {
         SignUpScreen.routeName: (context) => SignUpScreen(),
